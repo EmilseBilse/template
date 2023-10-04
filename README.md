@@ -5,15 +5,21 @@ a quick template to read and write files from the input folder to the output fol
 
 ## requirements
 
-##### nodejs:
+nodejs:
+
 https://nodejs.org/en
 
-##### for ts:
+for ts:
+
 npm install -g typescript
 
 ### run scripts
-##### for js:
+for js:
+
 node {filename}.js
-##### for ts:
+
+
+for ts:
+
 ts-node {filename}.ts
 
