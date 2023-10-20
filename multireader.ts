@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import {AStarFinder} from "astar-typescript";
 
 const inputDirectory: string = path.join(__dirname, 'input');
 const outputDirectory: string = path.join(__dirname, 'output');
@@ -21,38 +22,55 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
                 return;
             }
 
-            const lines = data.trim().split('\n').filter(line => line !== "");
+            const mapOffset = data.split("\n")[0];
+            const map = data.split("\n").slice(1, parseInt(mapOffset) + 1);
 
-            const boardSize = parseInt(lines[0], 10);
-            if (isNaN(boardSize) || lines.length < boardSize + 2) {
-                console.error(`File ${file} is not correctly formatted.`);
-                return;
-            }
+            const coordSets = data.split("\n").slice(parseInt(mapOffset) + 2, -1);
 
-            const numRoutes = parseInt(lines[boardSize + 1], 10);
-            const routes: [number, number][][] = [];
-
-            for (let i = boardSize + 2; i < boardSize + 2 + numRoutes; i++) {
-                const route = lines[i].split(' ').map(coord => {
-                    const [x, y] = coord.split(',').map(num => parseInt(num, 10));
-                    return [x, y] as [number, number];
-                });
-
-                routes.push(route);
-            }
-
-            let results: string = '';
-
-            routes.forEach(route => {
-                results = results + isRouteValid(route) + '\n';
+            coordSets.forEach((coordSet) => {
+                let test = coordSet.split(" ");
             });
+
+            let coords = coordSets.map((coordSet) => {
+                return coordSet.split(" ");
+            });
+
+            //make map into a matrix grid of 0 if the map has a W and 1 if the map has a L on the spots
+            const grid = map.map((row) => {
+                return row.split("").map((spot) => {
+                    if (spot === "W") {
+                        return 0;
+                    } else {
+                        return 1;
+                    }
+                });
+            });
+
+            let aStarInstance = new AStarFinder({
+                grid: {
+                    matrix: grid,
+                },
+            });
+
+            let outputs: string[] = [];
+
+            coords.forEach((coordPair) => {
+                let startPos = { x: parseInt(coordPair[0].split(",")[0]), y: parseInt(coordPair[0].split(",")[1]) };
+                let endPos = { x: parseInt(coordPair[1].split(",")[0]), y: parseInt(coordPair[1].split(",")[1]) };
+                const path = aStarInstance.findPath(startPos, endPos);
+
+                const pathOutput = path.map((coord) => `${coord[0]},${coord[1]}`).join(" ");
+                outputs.push(pathOutput);
+            });
+
+            const output = outputs.join("\n");
 
             // Construct the output file name and path
             const outputFileName: string = 'output_' + file;
             const outputFilePath: string = path.join(outputDirectory, outputFileName);
 
             // Write the transformed data to the output file
-            fs.writeFile(outputFilePath, results, (err: NodeJS.ErrnoException | null) => {
+            fs.writeFile(outputFilePath, output, (err: NodeJS.ErrnoException | null) => {
                 if (err) {
                     console.error(`Error writing to the file ${outputFileName}:`, err);
                     return;
@@ -62,36 +80,3 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
         });
     });
 });
-
-function isRouteValid(route: [number, number][]) {
-    const visited = new Set<string>();
-
-    for (let i = 0; i < route.length; i++) {
-        const [x1, y1] = route[i];
-
-        const keyCurrent = `${x1},${y1}`;
-
-        if (visited.has(keyCurrent)) {
-            return "INVALID";
-        }
-
-        visited.add(keyCurrent);
-
-        if (i < route.length - 1) {
-            const [x2, y2] = route[i + 1];
-
-            // Check for diagonal crossings
-            if (Math.abs(x1 - x2) === 1 && Math.abs(y1 - y2) === 1) {
-                // A diagonal move was made
-                const cross1 = `${x1},${y2}`;
-                const cross2 = `${x2},${y1}`;
-                if (visited.has(cross1) && visited.has(cross2)) {
-                    return "INVALID";
-                }
-            }
-        }
-    }
-
-    return "VALID";
-}
-

@@ -5,32 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79de7b0f-6b9d-4bfc-b173-ca6c81cd6207" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/input/level3_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/level3_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/level3_3.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/level3_4.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/level3_5.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/level3_example.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_1.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_2.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_3.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_4.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_5.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/output_level3_example.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level4_example.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_1.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_2.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_3.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_4.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_5.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level2_example.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_1.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_2.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_3.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_4.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_5.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/level3_example.in" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/multireader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/multireader.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_1.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_2.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_3.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_4.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_5.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/output_level2_example.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_1.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_2.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_3.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_4.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_5.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/output_level3_example.in" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "lvl-3",
+    "git-widget-placeholder": "lvl-4",
     "last_opened_file_path": "C:/Users/ehall/Desktop/cloudfight/template",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697805821747</updated>
       <workItem from="1697805822790" duration="4364000" />
-      <workItem from="1697810250600" duration="4445000" />
+      <workItem from="1697810250600" duration="7990000" />
     </task>
     <servers />
   </component>
