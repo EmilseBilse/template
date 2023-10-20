@@ -21,47 +21,38 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
                 return;
             }
 
-            const lines = data.trim().split('\n').filter(line => line !== ""); // This will filter out any empty lines
-            const boardSize = parseInt(lines[0], 10);
+            const lines = data.trim().split('\n').filter(line => line !== "");
 
+            const boardSize = parseInt(lines[0], 10);
             if (isNaN(boardSize) || lines.length < boardSize + 2) {
                 console.error(`File ${file} is not correctly formatted.`);
                 return;
             }
 
-            // Create the 2D array from the file content
-            const board: string[][] = [];
-            for (let i = 1; i <= boardSize; i++) {
-                board.push([...lines[i]]);
+            const numRoutes = parseInt(lines[boardSize + 1], 10);
+            const routes: [number, number][][] = [];
+
+            for (let i = boardSize + 2; i < boardSize + 2 + numRoutes; i++) {
+                const route = lines[i].split(' ').map(coord => {
+                    const [x, y] = coord.split(',').map(num => parseInt(num, 10));
+                    return [x, y] as [number, number];
+                });
+
+                routes.push(route);
             }
 
-            const numCoordinates = parseInt(lines[boardSize + 1], 10);
-            // Updated the coordinates parsing to be 4-tuple
-            const coordinates: [number, number, number, number][] = [];
-            for (let i = boardSize + 2; i < boardSize + 2 + numCoordinates; i++) {
-                const [coords1, coords2] = lines[i].split(' ').map(coord => coord.split(',').map(num => parseInt(num, 10)));
-                coordinates.push([coords1[0], coords1[1], coords2[0], coords2[1]]);
-            }
+            let results: string = '';
 
-            let results: string[] = [];
-            coordinates.forEach(([x1, y1, x2, y2]) => {
-                const visited: boolean[][] = Array(boardSize).fill(null).map(() => Array(boardSize).fill(false));
-
-                if (dfs(x1, y1, x2, y2, board, visited)) {
-                    results.push("SAME");
-                } else {
-                    results.push("DIFFERENT");
-                }
+            routes.forEach(route => {
+                results = results + isRouteValid(route) + '\n';
             });
-
-            console.log(results.join('\n'));
 
             // Construct the output file name and path
             const outputFileName: string = 'output_' + file;
             const outputFilePath: string = path.join(outputDirectory, outputFileName);
 
             // Write the transformed data to the output file
-            fs.writeFile(outputFilePath, results.join('\n'), (err: NodeJS.ErrnoException | null) => {
+            fs.writeFile(outputFilePath, results, (err: NodeJS.ErrnoException | null) => {
                 if (err) {
                     console.error(`Error writing to the file ${outputFileName}:`, err);
                     return;
@@ -72,24 +63,35 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
     });
 });
 
-function dfs(x: number, y: number, targetX: number, targetY: number, board: string[][], visited: boolean[][]): boolean {
-    if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || visited[y][x] || board[y][x] === 'W') {
-        return false;
-    }
+function isRouteValid(route: [number, number][]) {
+    const visited = new Set<string>();
 
-    if (x === targetX && y === targetY) {
-        return true;
-    }
+    for (let i = 0; i < route.length; i++) {
+        const [x1, y1] = route[i];
 
-    visited[y][x] = true;
+        const keyCurrent = `${x1},${y1}`;
 
-    // Visit neighboring cells (up, down, left, right)
-    const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-    for (let [dx, dy] of directions) {
-        if (dfs(x + dx, y + dy, targetX, targetY, board, visited)) {
-            return true;
+        if (visited.has(keyCurrent)) {
+            return "INVALID";
+        }
+
+        visited.add(keyCurrent);
+
+        if (i < route.length - 1) {
+            const [x2, y2] = route[i + 1];
+
+            // Check for diagonal crossings
+            if (Math.abs(x1 - x2) === 1 && Math.abs(y1 - y2) === 1) {
+                // A diagonal move was made
+                const cross1 = `${x1},${y2}`;
+                const cross2 = `${x2},${y1}`;
+                if (visited.has(cross1) && visited.has(cross2)) {
+                    return "INVALID";
+                }
+            }
         }
     }
 
-    return false;
+    return "VALID";
 }
+
