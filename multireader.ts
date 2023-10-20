@@ -36,36 +36,32 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
             }
 
             const numCoordinates = parseInt(lines[boardSize + 1], 10);
-            const coordinates: [number, number][] = [];
+            // Updated the coordinates parsing to be 4-tuple
+            const coordinates: [number, number, number, number][] = [];
             for (let i = boardSize + 2; i < boardSize + 2 + numCoordinates; i++) {
-                const [x, y] = lines[i].split(',').map(num => parseInt(num, 10));
-                coordinates.push([x, y]);
+                const [coords1, coords2] = lines[i].split(' ').map(coord => coord.split(',').map(num => parseInt(num, 10)));
+                coordinates.push([coords1[0], coords1[1], coords2[0], coords2[1]]);
             }
 
-            let lettersArray: string[] = [];
+            let results: string[] = [];
+            coordinates.forEach(([x1, y1, x2, y2]) => {
+                const visited: boolean[][] = Array(boardSize).fill(null).map(() => Array(boardSize).fill(false));
 
-            coordinates.forEach(([x, y]) => {
-                // Adjusting the indices since the coordinates are 1-based
-                const adjustedX = x;
-                const adjustedY = y;
-
-                if (adjustedX < boardSize && adjustedY < boardSize) {
-                    const letter = board[adjustedY][adjustedX];  // Adjusted to get row (y) first and then column (x)
-                    lettersArray.push(letter);
+                if (dfs(x1, y1, x2, y2, board, visited)) {
+                    results.push("SAME");
                 } else {
-                    console.error(`Coordinate (${x},${y}) is out of bounds for the board.`);
+                    results.push("DIFFERENT");
                 }
             });
 
-            const formattedString = lettersArray.join('\n');
-            console.log(formattedString);
+            console.log(results.join('\n'));
 
             // Construct the output file name and path
             const outputFileName: string = 'output_' + file;
             const outputFilePath: string = path.join(outputDirectory, outputFileName);
 
             // Write the transformed data to the output file
-            fs.writeFile(outputFilePath, formattedString, (err: NodeJS.ErrnoException | null) => {
+            fs.writeFile(outputFilePath, results.join('\n'), (err: NodeJS.ErrnoException | null) => {
                 if (err) {
                     console.error(`Error writing to the file ${outputFileName}:`, err);
                     return;
@@ -75,3 +71,25 @@ fs.readdir(inputDirectory, (err: NodeJS.ErrnoException | null, files: string[]) 
         });
     });
 });
+
+function dfs(x: number, y: number, targetX: number, targetY: number, board: string[][], visited: boolean[][]): boolean {
+    if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || visited[y][x] || board[y][x] === 'W') {
+        return false;
+    }
+
+    if (x === targetX && y === targetY) {
+        return true;
+    }
+
+    visited[y][x] = true;
+
+    // Visit neighboring cells (up, down, left, right)
+    const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    for (let [dx, dy] of directions) {
+        if (dfs(x + dx, y + dy, targetX, targetY, board, visited)) {
+            return true;
+        }
+    }
+
+    return false;
+}

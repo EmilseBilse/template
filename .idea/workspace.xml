@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79de7b0f-6b9d-4bfc-b173-ca6c81cd6207" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/input/level1_1.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level1_2.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level1_3.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level1_4.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level1_5.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input/level1_example.in" beforeDir="false" afterPath="$PROJECT_DIR$/input/level1_example.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_2.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_3.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_4.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_5.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/level2_example.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_1.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_2.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_3.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_4.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_5.in" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/output_level2_example.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multireader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/multireader.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,20 +31,24 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2X1oCoU2He1ZRfe5wFn1M387LnF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "lvl-1",
+    "git-widget-placeholder": "lvl-2",
     "last_opened_file_path": "C:/Users/ehall/Desktop/cloudfight/template",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -57,10 +68,14 @@
       <option name="presentableId" value="Default" />
       <updated>1697805821747</updated>
       <workItem from="1697805822790" duration="4364000" />
+      <workItem from="1697810250600" duration="1139000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
